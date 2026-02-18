@@ -1,7 +1,10 @@
-namespace EvolutionaryArchitecture.Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport;
+namespace EvolutionaryArchitecture.Fitnet.Reports.Infrastructure.GenerateNewPassesRegistrationsPerMonthReport;
 
-using DataRetriever;
-using Dtos;
+using Application.GenerateNewPassesRegistrationsPerMonthReport;
+using Infrastructure;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 
 internal static class GenerateNewPassesPerMonthReportEndpoint
 {

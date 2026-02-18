@@ -1,4 +1,4 @@
-﻿namespace EvolutionaryArchitecture.Fitnet.Reports.DataAccess;
+﻿namespace EvolutionaryArchitecture.Fitnet.Reports.Infrastructure.DataAccess;
 
 using System.ComponentModel.DataAnnotations;
 

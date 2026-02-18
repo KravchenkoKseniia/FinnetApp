@@ -1,8 +1,9 @@
-namespace EvolutionaryArchitecture.Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.DataRetriever;
+namespace EvolutionaryArchitecture.Fitnet.Reports.Infrastructure.GenerateNewPassesRegistrationsPerMonthReport;
 
+using Application.GenerateNewPassesRegistrationsPerMonthReport;
 using Dapper;
-using Dtos;
 using DataAccess;
+using Domain;
 
 internal sealed class NewPassesRegistrationPerMonthReportDataRetriever(IDatabaseConnectionFactory databaseConnectionFactory, TimeProvider timeProvider) : INewPassesRegistrationPerMonthReportDataRetriever
 {

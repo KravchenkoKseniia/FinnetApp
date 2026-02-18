@@ -33,5 +33,9 @@
         <Link>Contracts.http</Link>
       </Content>
     </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Fitnet.Reports.Infrastructure\Fitnet.Reports.Infrastructure.csproj" />
+    </ItemGroup>
   
 </Project>

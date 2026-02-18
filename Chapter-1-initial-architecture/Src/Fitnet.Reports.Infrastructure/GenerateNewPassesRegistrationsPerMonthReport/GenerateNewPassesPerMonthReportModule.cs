@@ -1,7 +1,8 @@
-namespace EvolutionaryArchitecture.Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport;
+namespace EvolutionaryArchitecture.Fitnet.Reports.Infrastructure.GenerateNewPassesRegistrationsPerMonthReport;
 
-using DataRetriever;
-using EvolutionaryArchitecture.Fitnet.Reports.DataAccess;
+using Application.GenerateNewPassesRegistrationsPerMonthReport;
+using DataAccess;
+using Microsoft.Extensions.DependencyInjection;
 
 internal static class GenerateNewPassesPerMonthReportModule
 {

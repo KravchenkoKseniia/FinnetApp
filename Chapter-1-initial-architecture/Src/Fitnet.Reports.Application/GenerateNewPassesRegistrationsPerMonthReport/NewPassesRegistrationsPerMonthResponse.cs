@@ -1,4 +1,6 @@
-namespace EvolutionaryArchitecture.Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.Dtos;
+namespace EvolutionaryArchitecture.Fitnet.Reports.Application.GenerateNewPassesRegistrationsPerMonthReport;
+
+using Domain;
 
 public sealed record NewPassesRegistrationsPerMonthResponse(IReadOnlyCollection<NewPassesRegistrationsPerMonthDto> PassesRegistrationsPerMonth)
 {

@@ -1,6 +1,7 @@
-namespace EvolutionaryArchitecture.Fitnet.Reports.DataAccess;
+namespace EvolutionaryArchitecture.Fitnet.Reports.Infrastructure.DataAccess;
 
 using System.Data;
+using Microsoft.Extensions.Configuration;
 using Npgsql;
 
 internal sealed class DatabaseConnectionFactory(IConfiguration configuration) : IDatabaseConnectionFactory

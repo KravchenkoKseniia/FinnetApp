@@ -1,4 +1,7 @@
-﻿namespace EvolutionaryArchitecture.Fitnet.Reports.DataAccess;
+﻿namespace EvolutionaryArchitecture.Fitnet.Reports.Infrastructure.DataAccess;
+
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 internal static class DataAccessModule
 {

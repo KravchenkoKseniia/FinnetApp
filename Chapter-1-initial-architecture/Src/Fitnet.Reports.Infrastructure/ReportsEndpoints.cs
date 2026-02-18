@@ -1,6 +1,7 @@
-namespace EvolutionaryArchitecture.Fitnet.Reports;
+namespace EvolutionaryArchitecture.Fitnet.Reports.Infrastructure;
 
 using GenerateNewPassesRegistrationsPerMonthReport;
+using Microsoft.AspNetCore.Routing;
 
 internal static class ReportsEndpoints
 {

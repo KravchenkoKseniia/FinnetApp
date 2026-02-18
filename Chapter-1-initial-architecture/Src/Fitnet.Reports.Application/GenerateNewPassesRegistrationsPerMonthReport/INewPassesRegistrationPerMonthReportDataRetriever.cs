@@ -1,6 +1,6 @@
-namespace EvolutionaryArchitecture.Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.DataRetriever;
+namespace EvolutionaryArchitecture.Fitnet.Reports.Application.GenerateNewPassesRegistrationsPerMonthReport;
 
-using Dtos;
+using Domain;
 
 internal interface INewPassesRegistrationPerMonthReportDataRetriever
 {

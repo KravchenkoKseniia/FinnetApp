@@ -1,7 +1,10 @@
-namespace EvolutionaryArchitecture.Fitnet.Reports;
+namespace EvolutionaryArchitecture.Fitnet.Reports.Infrastructure;
 
 using DataAccess;
 using GenerateNewPassesRegistrationsPerMonthReport;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 internal static class ReportsModule
 {
