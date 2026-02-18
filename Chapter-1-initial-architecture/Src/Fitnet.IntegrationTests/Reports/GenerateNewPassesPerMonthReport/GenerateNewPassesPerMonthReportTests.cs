@@ -4,8 +4,8 @@ using Common.TestEngine.Configuration;
 using Common.TestEngine.IntegrationEvents.Handlers;
 using Common.TestEngine.Time;
 using Fitnet.Contracts.SignContract.Events;
-using Fitnet.Reports;
-using Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.Dtos;
+using EvolutionaryArchitecture.Fitnet.Reports.Application.GenerateNewPassesRegistrationsPerMonthReport;
+using EvolutionaryArchitecture.Fitnet.Reports.Infrastructure;
 using Passes.RegisterPass;
 using TestData;
 

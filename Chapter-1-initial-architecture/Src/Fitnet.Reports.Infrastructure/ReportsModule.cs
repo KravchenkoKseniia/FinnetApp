@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-internal static class ReportsModule
+public static class ReportsModule
 {
-    internal static IServiceCollection AddReports(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddReports(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDataAccess(configuration);
         services.AddNewPassesRegistrationsPerMonthReport();
@@ -16,6 +16,6 @@ internal static class ReportsModule
         return services;
     }
 
-    internal static IApplicationBuilder UseReports(this IApplicationBuilder applicationBuilder) =>
+    public static IApplicationBuilder UseReports(this IApplicationBuilder applicationBuilder) =>
         applicationBuilder;
 }

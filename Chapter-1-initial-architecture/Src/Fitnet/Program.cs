@@ -6,7 +6,7 @@ using EvolutionaryArchitecture.Fitnet.Common.Validation.Requests;
 using EvolutionaryArchitecture.Fitnet.Contracts;
 using EvolutionaryArchitecture.Fitnet.Offers;
 using EvolutionaryArchitecture.Fitnet.Passes;
-using EvolutionaryArchitecture.Fitnet.Reports;
+using EvolutionaryArchitecture.Fitnet.Reports.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
