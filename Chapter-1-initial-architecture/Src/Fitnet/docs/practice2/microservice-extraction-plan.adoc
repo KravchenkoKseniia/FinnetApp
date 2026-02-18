@@ -1,0 +1,5 @@
+﻿== Task 3 - Future Extraction 
+
+- GET /api/reports/generate - returns monthly pass registration counts. We can add filters later (e.g., by pass type, by location, etc.)
+- Currently, this module reads from the database directly, but in the future, we can extract a separate Data Access module that will be responsible for accessing the database and providing data to the Reports module. This way, we can keep the Reports module focused on generating reports and not worry about database access logic.
+- Other modules can call it via gRPC or REST API, depending on the communication style we choose for our microservices. As the Passes module will publish events on which the Reports module can subscribe to get an updates, we can also consider using a message broker for communication between modules. This way, the Reports module can react to events in real-time and generate reports based on the latest data.
