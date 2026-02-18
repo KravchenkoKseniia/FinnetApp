@@ -1,4 +1,10 @@
 ﻿<Solution>
+  <Folder Name="/Modules/" />
+  <Folder Name="/Modules/Reports/">
+    <Project Path="Fitnet.Reports.Application\Fitnet.Reports.Application.csproj" Type="Classic C#" />
+    <Project Path="Fitnet.Reports.Domain\Fitnet.Reports.Domain.csproj" Type="Classic C#" />
+    <Project Path="Fitnet.Reports.Infrastructure\Fitnet.Reports.Infrastructure.csproj" Type="Classic C#" />
+  </Folder>
   <Project Path="Fitnet.AppHost/Fitnet.AppHost.csproj" />
   <Project Path="Fitnet.ArchitectureTests\Fitnet.ArchitectureTests.csproj" Type="C#" />
   <Project Path="Fitnet.IntegrationTests\Fitnet.IntegrationTests.csproj" Type="C#" />

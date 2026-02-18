@@ -1,0 +1,10 @@
+﻿Task 1 – Identify the Module
+
+For this practice, I have chosen the Reports module. After analyzing the system,
+I found that the Reports module is only responsible for generating reports based on the data from the system.
+It is not responsible for managing the data or handling any business logic related to the data.
+So it does not have any dependencies on other modules and other modules do not depend on it.
+It makes only SQL query to the database from Passes schema and generates reports based on the data.
+But in this module we also defined DataAccess module which is responsible for accessing the database and providing
+data to the Reports module. The Reports module does not have any entities or complex business logic,
+it only has simple logic to generate reports based on the data provided by the DataAccess module. 
