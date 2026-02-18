@@ -1,5 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Reports.Infrastructure.GenerateNewPassesRegistrationsPerMonthReport;
 
+using Application;
 using Application.GenerateNewPassesRegistrationsPerMonthReport;
 using Infrastructure;
 using Microsoft.AspNetCore.Builder;
@@ -10,13 +11,12 @@ internal static class GenerateNewPassesPerMonthReportEndpoint
 {
     internal static void MapGenerateNewPassesRegistrationsPerMonthReport(this IEndpointRouteBuilder app) => app.MapGet(
             ReportsApiPaths.GenerateNewReport, async (
-                INewPassesRegistrationPerMonthReportDataRetriever dataRetriever,
+                IReportsService reportsService,
                 CancellationToken cancellationToken) =>
             {
-                var reportData = await dataRetriever.GetReportDataAsync(cancellationToken);
-                var newPassesRegistrationsPerMonthResponse = NewPassesRegistrationsPerMonthResponse.Create(reportData);
-
-                return Results.Ok(newPassesRegistrationsPerMonthResponse);
+                var report =
+                    await reportsService.GenerateNewPassesRegistrationsPerMonthReportAsync(cancellationToken);
+                return Results.Ok(report);
             })
         .WithSummary("Returns report of all passes registered in a month")
         .WithDescription("This endpoint is used to retrieve all passes that were registered in a given month.")
