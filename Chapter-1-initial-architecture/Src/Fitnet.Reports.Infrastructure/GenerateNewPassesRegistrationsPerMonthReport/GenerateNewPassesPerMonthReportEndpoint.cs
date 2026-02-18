@@ -5,13 +5,14 @@ using Application.GenerateNewPassesRegistrationsPerMonthReport;
 using Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
 internal static class GenerateNewPassesPerMonthReportEndpoint
 {
     internal static void MapGenerateNewPassesRegistrationsPerMonthReport(this IEndpointRouteBuilder app) => app.MapGet(
             ReportsApiPaths.GenerateNewReport, async (
-                IReportsService reportsService,
+                [FromServices] IReportsService reportsService,
                 CancellationToken cancellationToken) =>
             {
                 var report =
