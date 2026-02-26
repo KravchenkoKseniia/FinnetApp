@@ -1,4 +1,4 @@
-﻿namespace EvolutionaryArchitecture.Fitnet.Reports.Infrastructure.Persistence;
+﻿namespace EvolutionaryArchitecture.Fitnet.Reports.Infrastructure.Outbox;
 
 internal sealed class Outbox
 {

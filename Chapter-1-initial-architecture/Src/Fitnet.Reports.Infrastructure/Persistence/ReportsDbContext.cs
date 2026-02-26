@@ -2,6 +2,7 @@
 
 using Domain;
 using Microsoft.EntityFrameworkCore;
+using Outbox;
 
 internal sealed class ReportsDbContext(DbContextOptions<ReportsDbContext> options) : DbContext(options)
 {

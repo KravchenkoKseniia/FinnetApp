@@ -4,6 +4,7 @@ using System.Text.Json;
 using Application;
 using Domain;
 using EvolutionaryArchitecture.Fitnet.Reports.Application.GenerateNewPassesRegistrationsPerMonthReport;
+using Outbox;
 using Persistence;
 
 internal class ReportsService(INewPassesRegistrationPerMonthReportDataRetriever dataRetriever, ReportsDbContext context) : IReportsService

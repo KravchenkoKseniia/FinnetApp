@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Outbox;
 using Persistence;
 
 public static class ReportsModule
@@ -16,7 +17,7 @@ public static class ReportsModule
         services.AddNewPassesRegistrationsPerMonthReport();
         services.AddDbContext<ReportsDbContext>(options =>
             options.UseNpgsql(configuration.GetConnectionString("Reports")));
-
+        services.AddHostedService<OutboxProcessor>();
         return services;
     }
 
