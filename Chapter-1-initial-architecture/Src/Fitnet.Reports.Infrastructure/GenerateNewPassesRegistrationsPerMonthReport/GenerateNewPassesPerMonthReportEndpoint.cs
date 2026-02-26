@@ -10,17 +10,28 @@ using Microsoft.AspNetCore.Routing;
 
 internal static class GenerateNewPassesPerMonthReportEndpoint
 {
-    internal static void MapGenerateNewPassesRegistrationsPerMonthReport(this IEndpointRouteBuilder app) => app.MapGet(
-            ReportsApiPaths.GenerateNewReport, async (
+    internal static void MapGenerateNewPassesRegistrationsPerMonthReport(this IEndpointRouteBuilder app)
+    {
+        app.MapGet(ReportsApiPaths.GenerateNewReport, async (
+                [FromServices] IReportsService reportsService,
+                CancellationToken cancellationToken) =>
+                {
+                    var report =
+                        await reportsService.GenerateNewPassesRegistrationsPerMonthReportAsync(cancellationToken);
+                    return Results.Ok(report);
+                })
+            .WithSummary("Returns report of all passes registered in a month")
+            .WithDescription("This endpoint is used to retrieve all passes that were registered in a given month.")
+            .Produces<NewPassesRegistrationsPerMonthResponse>()
+            .Produces(StatusCodes.Status500InternalServerError);
+        app.MapPost(ReportsApiPaths.GenerateNewReport, async (
                 [FromServices] IReportsService reportsService,
                 CancellationToken cancellationToken) =>
             {
-                var report =
-                    await reportsService.GenerateNewPassesRegistrationsPerMonthReportAsync(cancellationToken);
-                return Results.Ok(report);
+                var reportId = await reportsService.RequestReportGenerationAsync(cancellationToken);
+                return Results.Accepted(value: new { ReportId = reportId });
             })
-        .WithSummary("Returns report of all passes registered in a month")
-        .WithDescription("This endpoint is used to retrieve all passes that were registered in a given month.")
-        .Produces<NewPassesRegistrationsPerMonthResponse>()
-        .Produces(StatusCodes.Status500InternalServerError);
+            .WithSummary("Returns report of all passes registered in a month")
+            .WithDescription("Creates a report request, outbox message");
+    }
 }

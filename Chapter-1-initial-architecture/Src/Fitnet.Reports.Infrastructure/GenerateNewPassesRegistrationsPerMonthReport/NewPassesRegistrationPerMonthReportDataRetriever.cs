@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Reports.Infrastructure.GenerateNewPassesRegistrationsPerMonthReport;
 
-using Application.GenerateNewPassesRegistrationsPerMonthReport;
+using Application;
 using Dapper;
 using DataAccess;
 using Domain;

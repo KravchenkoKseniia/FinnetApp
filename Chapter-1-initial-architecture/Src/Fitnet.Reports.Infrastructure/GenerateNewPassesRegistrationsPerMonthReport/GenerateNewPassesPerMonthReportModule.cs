@@ -1,7 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Reports.Infrastructure.GenerateNewPassesRegistrationsPerMonthReport;
 
 using Application;
-using Application.GenerateNewPassesRegistrationsPerMonthReport;
 using DataAccess;
 using Microsoft.Extensions.DependencyInjection;
 
