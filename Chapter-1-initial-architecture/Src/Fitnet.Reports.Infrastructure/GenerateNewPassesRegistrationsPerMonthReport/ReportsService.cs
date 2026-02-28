@@ -6,6 +6,7 @@ using Domain;
 using EvolutionaryArchitecture.Fitnet.Reports.Application.GenerateNewPassesRegistrationsPerMonthReport;
 using Outbox;
 using Persistence;
+using Saga;
 
 internal class ReportsService(INewPassesRegistrationPerMonthReportDataRetriever dataRetriever, ReportsDbContext context) : IReportsService
 {
@@ -19,8 +20,10 @@ internal class ReportsService(INewPassesRegistrationPerMonthReportDataRetriever 
     {
         var report = ReportGeneration.Create();
         var outboxMessage = Outbox.Create("ReportGenerationRequested", JsonSerializer.Serialize(new { ReportId = report.Id }));
+        var saga = ReportGenerationSaga.Create(report.Id);
         context.ReportGenerations.Add(report);
         context.OutboxMessages.Add(outboxMessage);
+        context.ReportGenerationSagas.Add(saga);
         await context.SaveChangesAsync(cancellationToken);
         return report.Id;
     }

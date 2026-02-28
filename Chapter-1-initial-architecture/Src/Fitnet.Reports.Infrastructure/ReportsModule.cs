@@ -21,6 +21,11 @@ public static class ReportsModule
         return services;
     }
 
-    public static IApplicationBuilder UseReports(this IApplicationBuilder applicationBuilder) =>
-        applicationBuilder;
+    public static IApplicationBuilder UseReports(this IApplicationBuilder applicationBuilder)
+    {
+        using var scope = applicationBuilder.ApplicationServices.CreateScope();
+        var dbContext = scope.ServiceProvider.GetRequiredService<ReportsDbContext>();
+        dbContext.Database.Migrate();
+        return applicationBuilder;
+    }
 }

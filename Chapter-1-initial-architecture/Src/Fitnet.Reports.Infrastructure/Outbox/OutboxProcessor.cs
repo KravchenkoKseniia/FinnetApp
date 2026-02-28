@@ -1,7 +1,10 @@
-﻿namespace EvolutionaryArchitecture.Fitnet.Reports.Infrastructure.Outbox;
+﻿#pragma warning disable CA1873
+
+namespace EvolutionaryArchitecture.Fitnet.Reports.Infrastructure.Outbox;
 
 using System.Text.Json;
 using Application;
+using Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -20,7 +23,7 @@ internal sealed class OutboxProcessor(IServiceScopeFactory factory, ILogger<Outb
     }
     private async Task ProcessOutboxMessagesAsync(CancellationToken cancellationToken)
     {
-        var scope = factory.CreateScope();
+        using var scope = factory.CreateScope();
         var dbContext = scope.ServiceProvider.GetRequiredService<ReportsDbContext>();
         var retriever = scope.ServiceProvider.GetRequiredService<INewPassesRegistrationPerMonthReportDataRetriever>();
         var messages = await dbContext.OutboxMessages
@@ -32,18 +35,26 @@ internal sealed class OutboxProcessor(IServiceScopeFactory factory, ILogger<Outb
             {
                 var payload = JsonSerializer.Deserialize<ReportGenerationPayload>(msg.Payload);
                 var reportId = payload!.ReportId;
-
+                var saga = await dbContext.ReportGenerationSagas.FirstOrDefaultAsync(s => s.CorrelationId == reportId, cancellationToken);
+                if (saga is not null && saga.Status == SagaStatus.Completed)
+                {
+                    logger.LogInformation("Report generation already completed for {ReportId}, skipping", reportId);
+                    msg.ProcessedAt = DateTime.UtcNow;
+                    continue;
+                }
                 try
                 {
                     var reportData = await retriever.GetReportDataAsync(cancellationToken);
-                    logger.LogInformation($"Retrieved report data for {reportId}: {reportData.Count} records");
+                    msg.ProcessedAt = DateTime.UtcNow;
+                    saga?.MarkAsCompleted();
+                    logger.LogInformation("Retrieved report data for {ReportId}: {RecordCount} records", reportId, reportData.Count);
                 }
                 catch (Exception ex)
                 {
-                    logger.LogError(ex, $"Error processing report generation for {reportId}");
+                    saga?.MarkAsFailed();
+                    logger.LogError(ex, "Error processing report generation for {ReportId}", reportId);
                 }
             }
-            msg.ProcessedAt = DateTime.UtcNow;
         }
         await dbContext.SaveChangesAsync(cancellationToken);
     }
