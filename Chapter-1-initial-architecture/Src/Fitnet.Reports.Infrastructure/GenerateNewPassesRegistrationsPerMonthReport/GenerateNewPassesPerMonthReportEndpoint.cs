@@ -31,7 +31,9 @@ internal static class GenerateNewPassesPerMonthReportEndpoint
                 var reportId = await reportsService.RequestReportGenerationAsync(cancellationToken);
                 return Results.Accepted(value: new { ReportId = reportId });
             })
-            .WithSummary("Returns report of all passes registered in a month")
-            .WithDescription("Creates a report request, outbox message");
+            .WithSummary("Requests generation of the monthly passes registrations report")
+            .WithDescription("Creates an asynchronous report generation request and returns 202 Accepted with the identifier of the report to be generated.")
+            .Produces(StatusCodes.Status202Accepted)
+            .Produces(StatusCodes.Status500InternalServerError);
     }
 }
